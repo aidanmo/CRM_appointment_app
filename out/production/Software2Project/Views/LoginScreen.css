@@ -1,0 +1,11 @@
+#loginBackground {
+    -fx-background-color: linear-gradient(Gray,LightGray); }
+
+#loginBackground {
+    -fx-border-color: grey;
+}
+
+#loginBackground {
+    background-image: linear-gradient(LightGrey, White);
+}
+
