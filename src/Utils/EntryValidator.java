@@ -50,17 +50,18 @@ public class EntryValidator {
      */
     public static boolean isOverlapping(LocalDateTime start, LocalDateTime end,
                                         ObservableList <Appointment> allAppointments ,int customerId) {
-        for (Appointment appointment: allAppointments) {
-            if (customerId == appointment.getCustomerID()) {
-                if (start.isBefore(appointment.getEndTime()) && appointment.getStartTime().isBefore(end)) {
-                    ProgramAlerts.errorAlertCreator("Appointment Error", "Overlapping Appointments Conflict",
-                            "Appointment times " + start.toLocalTime() + " - " + end.toLocalTime() +
-                                    " conflict with existing appointment ID: " + appointment.getAppointmentID() +
-                                    " taking place from " + appointment.getStartTime().toLocalTime() + " - " +
-                                    appointment .getEndTime().toLocalTime() + ".");
-                    return true;
-                }
-            }
+        if(allAppointments==null || allAppointments.isEmpty()){
+            ProgramAlerts.errorAlertCreator("Appointment Error", "No Appointment Available",
+                    "No Appointment is available");
+            return true;
+        }
+        if (allAppointments.stream()
+                .filter(appointment -> customerId == appointment.getCustomerID())
+                .anyMatch(appointment -> (start.isBefore(appointment.getEndTime()) && appointment.getStartTime().isBefore(end)))) {
+            ProgramAlerts.errorAlertCreator("Appointment Error", "Overlapping Appointments Conflict",
+                    "Appointment times " + start.toLocalTime() + " - " + end.toLocalTime() +
+                            " conflict with existing appointment ");
+            return true;
         }
         return false;
     }
