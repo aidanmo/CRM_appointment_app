@@ -4,40 +4,33 @@ import Utils.EntryValidator;
 import Utils.Logger;
 import Utils.ProgramAlerts;
 import Utils.ScreenSwitcher;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+
 import java.io.IOException;
 import java.net.URL;
-import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
 
     @FXML
-    public Button loginButton;
-    public Button cancelBtn;
-    public Label userZoneLbl;
-    public Label timeZoneLbl;
-    public Button exitBtn;
-    @FXML
-    private Label passwordLbl;
+    private Text incorrect_credentials;
 
     @FXML
-    private TextField passwordTxt;
+    private JFXButton login_button;
 
     @FXML
-    private Label usernameLbl;
+    private JFXPasswordField password_txt;
 
     @FXML
-    public Label userLoginLbl;
+    private JFXTextField username_txt;
 
-    @FXML
-    private TextField usernameTxt;
 
     /**
      * @param url
@@ -47,6 +40,7 @@ public class LoginScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resource) {
+        /*
         Locale locale = Locale.getDefault();
         userZoneLbl.setText(ZoneId.systemDefault().toString());
         resource = ResourceBundle.getBundle("language_property/loginScreen", locale);
@@ -58,6 +52,8 @@ public class LoginScreenController implements Initializable {
         cancelBtn.setText(resource.getString("cancelBtn"));
         loginButton.setText(resource.getString("loginButton"));
         exitBtn.setText(resource.getString("exitBtn"));
+
+         */
     }
 
     /**
@@ -70,13 +66,14 @@ public class LoginScreenController implements Initializable {
      * matching user is found or not found based on the text field value the method will call the log() method from
      * Logger class creating a entry for each successful or failed attempt in the login_activity.txt file.
      */
-    public void onActionLogin(ActionEvent event) throws IOException {
+    @FXML
+    void onActionLogin(ActionEvent event) throws IOException {
         Locale locale = Locale.getDefault();
         ResourceBundle resource;
         resource = ResourceBundle.getBundle("language_property/loginScreen", locale);
 
-        String username = usernameTxt.getText();
-        String password = passwordTxt.getText();
+        String username = username_txt.getText();
+        String password = password_txt.getText();
 
         if (EntryValidator.isUserCredentialsValid(username, password)) {
             Logger.log(username, true);
@@ -88,7 +85,6 @@ public class LoginScreenController implements Initializable {
                     resource.getString("loginFailedOkayButton"));
             Logger.log(username, false);
         }
-
     }
 
     /**
@@ -96,9 +92,9 @@ public class LoginScreenController implements Initializable {
      *
      * Clears text from both usernameTxt field and passwordTxt field.
      */
-    public void onActionClear(ActionEvent event) {
-        usernameTxt.clear();
-        passwordTxt.clear();
+    public void onActionCancel(ActionEvent event) {
+        password_txt.setText("");
+        username_txt.setText("");
     }
 
     /**
@@ -110,3 +106,4 @@ public class LoginScreenController implements Initializable {
         System.exit(0);
     }
 }
+

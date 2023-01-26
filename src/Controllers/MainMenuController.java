@@ -1,77 +1,51 @@
 package Controllers;
-import DAO.AppointmentDB;
-import Model.Appointment;
-import Utils.ProgramAlerts;
-import Utils.ScreenSwitcher;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
+import Controllers.ToolBarController;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.layout.VBox;
 
 public class MainMenuController implements Initializable {
 
+    public StackPane MenuContent;
+    @FXML
+    private JFXDrawer menu_drawer;
 
-    public Label timeZoneLbl;
-    public Button appointmentsMenuBtn;
+    @FXML
+    private JFXHamburger menu_hamburger;
 
-    /**
-     * @param url
-     * @param resourceBundle
-     *
-     * Sets timeZoneLbl to user location upon initialization.
-     */
+    @FXML
+    private Text tab_title;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Locale userLocale = Locale.getDefault();
-        timeZoneLbl.setText(ZoneId.systemDefault().toString());
+
+        try {
+            initToolBar();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void initToolBar() throws IOException {
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(MainMenuController.class.getResource
+                        ("/views/toolbar.fxml"));
+        VBox vBox = fxmlLoader.load();
+        ToolBarController toolbarController = fxmlLoader
+                .getController();
+        menu_drawer.setSidePane(vBox);
+        menu_drawer.close();
 
     }
 
-    /**
-     * @param event ActionEvent button clicked.
-     * @throws IOException
-     *
-     * Changes scenes to the AppointmentMenu.
-     */
-    public void onActionAppointmentsMenu(ActionEvent event) throws IOException {
-        ScreenSwitcher.goToAppointmentMenu(event);
-    }
-
-    /**
-     * @param event ActionEvent button clicked.
-     * @throws IOException
-     *
-     * Changes scenes to the CustomerMenu.
-     */
-    public void onActionCustomersMenu(ActionEvent event) throws IOException {
-        ScreenSwitcher.goToCustomerMenu(event);
-    }
-
-    /**
-     * @param event ActionEvent button clicked.
-     * @throws IOException
-     *
-     * Changes scenes to the ReportsMenu.
-     */
-    public void onActionReportsMenu(ActionEvent event) throws IOException {
-        ScreenSwitcher.goToReportsMenu(event);
-    }
-
-    /**
-     * @param event ActionEvent button clicked.
-     * @throws IOException
-     *
-     * Logs out of program and changes scene to LoginScreen.
-     */
-    public void OnActionLogOut(ActionEvent event) throws IOException {
-        ScreenSwitcher.goToLoginScreen(event);
-    }
 }

@@ -1,94 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="loginBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" stylesheets="/Views/LoginScreen.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginScreenController">
-   <children>
-      <GridPane layoutX="1.0" prefHeight="300.0" prefWidth="500.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="112.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="247.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="125.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginScreenController">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="315.0" style="-fx-background-color: #335c81;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label fx:id="userLoginLbl" text="User Login">
-                     <font>
-                        <Font name="System Bold Italic" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label fx:id="usernameLbl" prefHeight="17.0" prefWidth="100.0" text="Username" />
-                  <TextField fx:id="usernameTxt" prefHeight="26.0" prefWidth="125.0" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label fx:id="passwordLbl" prefHeight="17.0" prefWidth="100.0" text="Password" />
-                  <PasswordField fx:id="passwordTxt" prefHeight="26.0" prefWidth="124.0" />
-               </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onActionLogin" text="Login" />
-                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#onActionClear" text="Cancel" />
-               </children>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="timeZoneLbl" text="Time Zone:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="userZoneLbl" text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <children>
-                  <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#onExit" text="Exit" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+            <ImageView fitHeight="125.0" fitWidth="200.0" layoutX="57.0" layoutY="135.0">
+               <image>
+                  <Image url="@/Assets/linkd-high-resolution-logo-color-on-transparent-background.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="385.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="username_txt" focusColor="#405aa8" labelFloat="true" layoutX="106.0" layoutY="172.0" prefHeight="26.0" prefWidth="200.0" promptText="username" unFocusColor="#335c81" />
+            <FontIcon iconColor="#335c81" iconLiteral="fas-user" iconSize="20" layoutX="78.0" layoutY="194.0" />
+            <FontIcon iconColor="#335c81" iconLiteral="fas-key" iconSize="20" layoutX="78.0" layoutY="253.0" />
+            <FontIcon iconColor="#335c81" iconLiteral="fas-users" iconSize="50" layoutX="161.0" layoutY="108.0" />
+            <Text fill="#335c81" layoutX="147.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Login">
+               <font>
+                  <Font size="20.0" />
+               </font></Text>
+            <JFXButton fx:id="login_button" layoutX="102.0" layoutY="294.0" onAction="#onActionLogin" prefHeight="26.0" prefWidth="90.0" stylesheets="@../CSS/login.css" text="Login" textFill="WHITE" />
+            <JFXPasswordField fx:id="password_txt" labelFloat="true" layoutX="107.0" layoutY="234.0" prefHeight="26.0" prefWidth="200.0" promptText="password" unFocusColor="#335c81" />
+            <Button layoutX="353.0" layoutY="-1.0" mnemonicParsing="false" onAction="#onExit" style="-fx-background-color: transparent;" textFill="#335c81">
+               <graphic>
+                  <FontIcon iconColor="#335c81" iconLiteral="fas-window-close" iconSize="20" />
+               </graphic>
+            </Button>
+            <Text fx:id="incorrect_credentials" fill="RED" layoutX="113.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="176.89096069335938">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="cancel_button" layoutX="217.0" layoutY="294.0" onAction="#onActionCancel" prefHeight="26.0" prefWidth="90.0" stylesheets="@../CSS/login.css" text="Cancel" textFill="WHITE" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>
